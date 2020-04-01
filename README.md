@@ -68,6 +68,12 @@ auth could be added to the app.
 
 ### Helpful Docker Compose Commands
 
+#### To start the containers in the background:
+
+    sudo docker-compose up -d
+    
+To keep it in the foreground, for debugging, etc., leave the `-d` off.
+
 #### To see what's running:
 
     sudo docker-compose ps
