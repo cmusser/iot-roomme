@@ -31,14 +31,17 @@ def get_all():
 
 @app.route('/locations', methods=['POST'])
 def create_new():
-    new_location = request.get_json()
-    id = get_db().locations.insert_one(new_location).inserted_id
-    return 'request accepted (id {})'.format(id)
+    try:
+        new_location = request.get_json()
+        id = get_db().locations.insert_one(new_location).inserted_id
+        return 'request accepted (id {})'.format(id)
+    except TypeError:
+        print(request)
+        return 'bad request', 400
 
 @app.route('/locations')
 def list_locations():
     all_locations = list(get_db().locations.find())
-    print(all_locations)
     return JSONEncoder().encode(all_locations)
         
 @app.route('/locations/id/<id>')
