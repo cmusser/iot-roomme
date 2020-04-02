@@ -35,9 +35,9 @@ def create_new():
         new_location = request.get_json()
         id = get_db().locations.insert_one(new_location).inserted_id
         return 'request accepted (id {})'.format(id)
-    except TypeError:
+    except TypeError as e:
         print(request)
-        return 'bad request', 400
+        return 'bad request: {}'.format(e), 400
 
 @app.route('/locations')
 def list_locations():
