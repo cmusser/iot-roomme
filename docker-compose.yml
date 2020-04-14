@@ -10,7 +10,7 @@ services:
   app:
     ports:
       - "80:80"
-    image: iot-roomme
+    image: iot-roomme:1.0.0
     logging: *default-logging
   db:
     image: mongo:bionic
